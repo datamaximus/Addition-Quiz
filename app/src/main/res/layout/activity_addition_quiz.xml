@@ -8,10 +8,63 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.jasonwiram.additionquiz.AdditionQuizActivity">
+    tools:context="com.jasonwiram.additionquiz.AdditionQuizActivity"
+    android:background="#51b46d">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:text="Addition Quiz"
+        android:textSize="24sp"
+        android:textColor="#80ffffff"
+        android:id="@+id/textView2"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="What is 48 + 12?"
+        android:id="@+id/QuestionTextView"
+        android:textSize="48sp"
+        android:textColor="#80ffffff"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="50"
+        android:id="@+id/button1"
+        android:textSize="36sp"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/QuestionTextView"
+        android:layout_alignLeft="@+id/button2"
+        android:layout_alignStart="@+id/button2"
+        android:layout_marginRight="40dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="60"
+        android:id="@+id/button2"
+        android:layout_below="@+id/button1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textSize="36sp"
+        android:layout_marginLeft="40sp"
+        android:layout_marginRight="40sp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="70"
+        android:id="@+id/button3"
+        android:layout_below="@+id/button2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textSize="36sp"
+        android:layout_marginLeft="40sp"
+        android:layout_marginRight="40sp"/>
 </RelativeLayout>

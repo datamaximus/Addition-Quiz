@@ -26,8 +26,8 @@
         android:layout_height="wrap_content"
         android:text="What is 48 + 12?"
         android:id="@+id/QuestionTextView"
-        android:textSize="48sp"
-        android:textColor="#80ffffff"
+        android:textSize="36sp"
+        android:textColor="#ffffff"
         android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"/>

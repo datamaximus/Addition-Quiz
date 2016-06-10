@@ -19,8 +19,12 @@ public class AdditionQuizActivity extends AppCompatActivity {
     private RadioButton mAnswerButton3;
     private Button mSubmitButton;
     private TextView mQuestionTextView;
+    private TextView mRight;
+    private TextView mAttempted;
     private String mChoice;
     private String mToast;
+    private int numRight = 0;
+    private int numAttempted = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,8 @@ public class AdditionQuizActivity extends AppCompatActivity {
         mAnswerButton3 = (RadioButton) findViewById(R.id.button3);
         mSubmitButton = (Button) findViewById(R.id.submitButton);
         mQuestionTextView = (TextView) findViewById(R.id.QuestionTextView);
+        mRight = (TextView) findViewById(R.id.rightTextView);
+        mAttempted = (TextView) findViewById(R.id.attemptedTextView);
 
         nextQuestion();
 
@@ -67,9 +73,11 @@ public class AdditionQuizActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         if (mChoice.equalsIgnoreCase(mQuestionBank.mCorrectAnswer)) {
                             mToast = "Correct!";
+                            numRight++;
                         } else {
                             mToast = "Incorrect.";
                         }
+                        numAttempted++;
                         Toast.makeText(AdditionQuizActivity.this, mToast, Toast.LENGTH_SHORT).show();
                         nextQuestion();
                         mRadioGroup.clearCheck();
@@ -79,6 +87,8 @@ public class AdditionQuizActivity extends AppCompatActivity {
     }
 
     public void nextQuestion() {
+        mRight.setText(String.valueOf(numRight));
+        mAttempted.setText(String.valueOf(numAttempted));
         mQuestionBank.setQuestionAndAnswers();
         mQuestionTextView.setText(mQuestionBank.mQuestion);
         assignAnswerPosition();

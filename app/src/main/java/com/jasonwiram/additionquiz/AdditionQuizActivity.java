@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -11,10 +13,13 @@ import java.util.Random;
 
 public class AdditionQuizActivity extends AppCompatActivity {
     private QuestionBank mQuestionBank = new QuestionBank();
-    private Button mAnswerButton1;
-    private Button mAnswerButton2;
-    private Button mAnswerButton3;
+    private RadioGroup mRadioGroup;
+    private RadioButton mAnswerButton1;
+    private RadioButton mAnswerButton2;
+    private RadioButton mAnswerButton3;
+    private Button mSubmitButton;
     private TextView mQuestionTextView;
+    private String mChoice;
     private String mToast;
 
     @Override
@@ -22,9 +27,11 @@ public class AdditionQuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addition_quiz);
 
-        mAnswerButton1 = (Button) findViewById(R.id.button1);
-        mAnswerButton2 = (Button) findViewById(R.id.button2);
-        mAnswerButton3 = (Button) findViewById(R.id.button3);
+        mRadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        mAnswerButton1 = (RadioButton) findViewById(R.id.button1);
+        mAnswerButton2 = (RadioButton) findViewById(R.id.button2);
+        mAnswerButton3 = (RadioButton) findViewById(R.id.button3);
+        mSubmitButton = (Button) findViewById(R.id.submitButton);
         mQuestionTextView = (TextView) findViewById(R.id.QuestionTextView);
 
         nextQuestion();
@@ -32,45 +39,43 @@ public class AdditionQuizActivity extends AppCompatActivity {
         View.OnClickListener listener1 = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mAnswerButton1.getText() == mQuestionBank.mCorrectAnswer) {
-                    mToast = "Correct!";
-                } else {
-                    mToast = "Incorrect.";
-                }
-                Toast.makeText(AdditionQuizActivity.this, mToast, Toast.LENGTH_SHORT).show();
-                nextQuestion();
+               mChoice = (String) mAnswerButton1.getText();
             }
         };
 
         View.OnClickListener listener2 = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mAnswerButton2.getText() == mQuestionBank.mCorrectAnswer) {
-                    mToast = "Correct!";
-                } else {
-                    mToast = "Incorrect.";
-                }
-                Toast.makeText(AdditionQuizActivity.this, mToast, Toast.LENGTH_SHORT).show();
-                nextQuestion();
+                mChoice = (String) mAnswerButton2.getText();
             }
         };
 
         View.OnClickListener listener3 = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mAnswerButton3.getText() == mQuestionBank.mCorrectAnswer) {
-                    mToast = "Correct!";
-                } else {
-                    mToast = "Incorrect.";
-                }
-                Toast.makeText(AdditionQuizActivity.this, mToast, Toast.LENGTH_SHORT).show();
-                nextQuestion();
+                mChoice = (String) mAnswerButton3.getText();
             }
         };
 
         mAnswerButton1.setOnClickListener(listener1);
         mAnswerButton2.setOnClickListener(listener2);
         mAnswerButton3.setOnClickListener(listener3);
+
+        mSubmitButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (mChoice.equalsIgnoreCase(mQuestionBank.mCorrectAnswer)) {
+                            mToast = "Correct!";
+                        } else {
+                            mToast = "Incorrect.";
+                        }
+                        Toast.makeText(AdditionQuizActivity.this, mToast, Toast.LENGTH_SHORT).show();
+                        nextQuestion();
+                        mRadioGroup.clearCheck();
+                    }
+                }
+        );
     }
 
     public void nextQuestion() {

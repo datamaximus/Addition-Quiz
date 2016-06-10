@@ -4,12 +4,6 @@ import java.util.Random;
 
 public class QuestionBank {
 
-    // Example for index 0:
-    // What is 3 + 4?
-    //     10
-    //     8
-    //     7
-
     public String mQuestion;
     public String mCorrectAnswer;
     public String mFirstIncorrectAnswer;

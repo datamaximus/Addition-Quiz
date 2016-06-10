@@ -1,5 +1,6 @@
 package com.jasonwiram.additionquiz;
 
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 import java.util.Random;
 
 public class AdditionQuizActivity extends AppCompatActivity {
+    private MediaPlayer wrongSound;
+    private MediaPlayer correctSound;
     private QuestionBank mQuestionBank = new QuestionBank();
     private RadioGroup mRadioGroup;
     private RadioButton mAnswerButton1;
@@ -31,6 +34,8 @@ public class AdditionQuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addition_quiz);
 
+        wrongSound = MediaPlayer.create(this, R.raw.wrong);
+        correctSound = MediaPlayer.create(this, R.raw.correct);
         mRadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         mAnswerButton1 = (RadioButton) findViewById(R.id.button1);
         mAnswerButton2 = (RadioButton) findViewById(R.id.button2);
@@ -72,9 +77,11 @@ public class AdditionQuizActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         if (mChoice.equalsIgnoreCase(mQuestionBank.mCorrectAnswer)) {
+                            correctSound.start();
                             mToast = "Correct!";
                             numRight++;
                         } else {
+                            wrongSound.start();
                             mToast = "Incorrect.";
                         }
                         numAttempted++;

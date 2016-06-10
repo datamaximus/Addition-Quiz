@@ -24,7 +24,7 @@ public class AdditionQuizActivity extends AppCompatActivity {
     private TextView mQuestionTextView;
     private TextView mRight;
     private TextView mAttempted;
-    private String mChoice;
+    private String mChoice = "default";
     private String mToast;
     private int numRight = 0;
     private int numAttempted = 0;
@@ -76,18 +76,23 @@ public class AdditionQuizActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (mChoice.equalsIgnoreCase(mQuestionBank.mCorrectAnswer)) {
-                            correctSound.start();
-                            mToast = "Correct!";
-                            numRight++;
+                        if (!mChoice.equalsIgnoreCase("default")) {
+                            if (mChoice.equalsIgnoreCase(mQuestionBank.mCorrectAnswer)) {
+                                correctSound.start();
+                                mToast = "Correct!";
+                                numRight++;
+                            } else {
+                                wrongSound.start();
+                                mToast = "Incorrect.";
+                            }
+                            numAttempted++;
+                            Toast.makeText(AdditionQuizActivity.this, mToast, Toast.LENGTH_SHORT).show();
+                            nextQuestion();
+                            mRadioGroup.clearCheck();
+                            mChoice = "default";
                         } else {
-                            wrongSound.start();
-                            mToast = "Incorrect.";
+                            Toast.makeText(AdditionQuizActivity.this, "Choose an answer.", Toast.LENGTH_LONG).show();
                         }
-                        numAttempted++;
-                        Toast.makeText(AdditionQuizActivity.this, mToast, Toast.LENGTH_SHORT).show();
-                        nextQuestion();
-                        mRadioGroup.clearCheck();
                     }
                 }
         );

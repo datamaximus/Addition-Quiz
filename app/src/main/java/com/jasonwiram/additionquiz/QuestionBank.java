@@ -16,7 +16,7 @@ public class QuestionBank {
         int correctAnswer = leftAdder + rightAdder;
         mQuestion = "What is " + leftAdder + " + " + rightAdder + "?";
         mCorrectAnswer = String.valueOf(leftAdder + rightAdder);
-        mFirstIncorrectAnswer = String.valueOf(correctAnswer + randomGenerator.nextInt(10));
-        mSecondIncorrectAnswer = String.valueOf(correctAnswer - randomGenerator.nextInt(10));
+        mFirstIncorrectAnswer = String.valueOf(correctAnswer + randomGenerator.nextInt(10) + 1);
+        mSecondIncorrectAnswer = String.valueOf(correctAnswer - randomGenerator.nextInt(10) - 1);
     }
 }
